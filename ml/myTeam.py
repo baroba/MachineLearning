@@ -159,23 +159,47 @@ class GeneticAgent(CaptureAgent):
                 spots.append((count, c))
             c = c + 1
         count = count + 1
-        for s in spots: 
-            foodDistances.append(self.getMazeDistance(successor.getAgentState(self.index).getPosition(), s))
-        sum = sum + (10/(min(foodDistances)))
-        count = 0 
-        newCapsules = self.getCapsules(successor) 
-        cspots = []
-        capsuleDistances = []
-        for c in newCapsules:
-            a = 0
-            for cc in c: 
-                if newCapsules[count][a]:
-                    spots.append((count,a))
-                a = a + 1
-            count = count + 1
-        for s in cspots: 
-            capsuleDistances.append(self.getMazeDistance(successor.getAgent(self.index).getPostion(), s))
-        sum = sum + (10/(min(capsuleDistances)))
+      for s in spots: 
+          foodDistances.append(self.getMazeDistance(successor.getAgentState(self.index).getPosition(), s))
+      sum = sum + (10/(min(foodDistances)))
+      count = 0 
+      newCapsules = self.getCapsules(successor) 
+      cspots = []
+      capsuleDistances = []
+      for c in newCapsules:
+          a = 0
+          for cc in c: 
+              if newCapsules[count][a]:
+                   spots.append((count,a))
+              a = a + 1
+          count = count + 1
+      sucPos=self.getMazeDistance(successor.getAgent(self.index).getPostion()
+      for s in cspots: 
+          capsuleDistances.append(sucPos, s))
+      sum = sum + (10/(min(capsuleDistances)))
+      enemyDistances=[]
+      en=self.getOpponents(successor)
+      tspots=[]
+      tfood=self.getFoodYouAreDefending(successor)
+      count=0
+      for f in tfood:
+        c = 0
+        for ff in f: 
+            if tfood[count][c]:
+                tspots.append((count, c))
+            c = c + 1
+        count = count + 1
+      enFoodCount=len(tspots)
+      for x in en:
+        tempSpots=[]
+        enemyDistances.append(self.getMazeDistance(sucPos,successor.getAgentPosition(x)))
+        for z in tspots:
+          tempSpots.append(self.getMazeDistance(z, successor.getAgentPosition(x)))
+        tspots.append(min(tempspots))
+      team=self.getTeam()
+      teamDistance=self.getMazeDistance(successor.getAgentPosition(team[0]),successor.getAgentPosition(team[1]))
+      numMoves=len(successor(getLegalActions(self.index)))
+      
         
         
         
