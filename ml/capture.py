@@ -814,6 +814,7 @@ def runGames( layout, agents, display, length, numGames, record, numTraining, re
   return games
 
 def evalGame(value1, value2):
+     """first value is red"""
      agents=[GeneticAgent(0,0.1,value1[0:11]),GeneticAgent(1,0.1,value2[0:11]),GeneticAgent(2,0.1,value1[11:22]),GeneticAgent(3,0.1,value2[11:22])]
      rules = CaptureRules()
      import textDisplay
