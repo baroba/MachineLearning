@@ -198,6 +198,7 @@ class GeneticAgent(CaptureAgent):
       team=self.getTeam()
       teamDistance=self.getMazeDistance(successor.getAgentPosition(team[0]),successor.getAgentPosition(team[1]))
       numMoves=len(successor(getLegalActions(self.index)))
+<<<<<<< HEAD
       minEnemyDistance = min(enemyDistances)
       attack = 0
       flee = 0
@@ -207,6 +208,9 @@ class GeneticAgent(CaptureAgent):
         attack = 10/minEnemyDistance
       else 
         flee = minEnemyDistance 
+=======
+      
+>>>>>>> ec3bb05be3bfe4ada0461dacc0ae1f281c506293
         
       
           
