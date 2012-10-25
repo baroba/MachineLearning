@@ -195,6 +195,7 @@ class GeneticAgent(CaptureAgent):
         for z in tspots:
           tempSpots.append(self.getMazeDistance(z, successor.getAgentPosition(x)))
         tspots.append(min(tempspots))
+      enemyDistToDot=min(tspots)
       team=self.getTeam()
       teamDistance=self.getMazeDistance(successor.getAgentPosition(team[0]),successor.getAgentPosition(team[1]))
       numMoves=len(successor(getLegalActions(self.index)))
