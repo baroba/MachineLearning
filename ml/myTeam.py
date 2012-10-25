@@ -139,7 +139,7 @@ class GeneticAgent(CaptureAgent):
       actions = gameState.getLegalActions(self.index)
       if actions:
           max = actions[0] 
-          maxVal = self.evaluateActions(a[0], gameState)
+          maxVal = self.evaluateActions(actions[0], gameState)
           for a in actions: 
               currentVal = self.evaluateAction(a, gameState)
               if  currentVal > maxVal: 
