@@ -789,6 +789,9 @@ def runGames( layout, agents, display, length, numGames, record, numTraining, re
         rules.quiet = False
     g = rules.newGame( layout, agents, gameDisplay, length, muteAgents, catchExceptions )
     g.run()
+    print "me"
+    print options
+    print "fuck"
     if not beQuiet: games.append(g)
 
     g.record = None

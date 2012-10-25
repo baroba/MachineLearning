@@ -44,6 +44,7 @@ from game import Grid
 from game import Configuration
 from game import Agent
 from game import reconstituteGrid
+from myTeam import GeneticAgent
 import sys, util, types, time, random
 import keyboardAgents
 
@@ -789,6 +790,7 @@ def runGames( layout, agents, display, length, numGames, record, numTraining, re
         rules.quiet = False
     g = rules.newGame( layout, agents, gameDisplay, length, muteAgents, catchExceptions )
     g.run()
+    
     if not beQuiet: games.append(g)
 
     g.record = None
@@ -811,6 +813,24 @@ def runGames( layout, agents, display, length, numGames, record, numTraining, re
     print 'Record:       ', ', '.join([('Blue', 'Tie', 'Red')[max(0, min(2, 1 + s))] for s in scores])
   return games
 
+def evalGame(value1, value2):
+     agents=[GeneticAgent(0,0.1,value1[0:11]),GeneticAgent(1,0.1,value2[0:11]),GeneticAgent(2,0.1,value1[11:22]),GeneticAgent(3,0.1,value2[11:22])]
+     rules = CaptureRules()
+     import textDisplay
+     gameDisplay = textDisplay.NullGraphics()
+     rules.quiet = True
+     g = rules.newGame( options['layout'], agents, gameDisplay, options['length'], options['muteAgents'], options['catchExceptions'] )
+     g.run()
+     if g.state.getRedFood().count() == MIN_FOOD:
+          return 0
+     elif g.state.getBlueFood().count() == MIN_FOOD:
+          return 1
+     elif g.state.data.score < 0:
+          return 1
+     else:
+          return 0
+     
+  
 if __name__ == '__main__':
   """
   The main function called when pacman.py is run
